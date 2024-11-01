@@ -15,7 +15,7 @@ const handleClick = (id: number) => {
 </script>
 
 <template>
-    <div class="bg-gray-50">
+    <div class="bg-gray-200">
         <div class="gap-2 p-2 grid md:grid-cols-4 grid-cols-3">
             <ProductButton v-for="product in products" :key="product.id" :id="product.id" :label="product.name"
                 :price="product.price" @click="handleClick"/>

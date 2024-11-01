@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { formatCurrency } from '../utils';
 
-
 const { items } = defineProps<{
     items: {
         id: number,

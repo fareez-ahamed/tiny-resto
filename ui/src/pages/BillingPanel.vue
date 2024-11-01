@@ -1,19 +1,15 @@
 <script setup lang="ts">
-import Products from './Products.vue';
-import Bill from './Bill.vue';
+import Products from '../components/Products.vue';
+import Bill from '../components/Bill.vue';
 import { computed, ref } from 'vue';
 import { useProducts } from '../composables/useProducts';
-
-const {
-    productsClass
-} = defineProps<{ productsClass: string }>()
 
 const items = ref<{ id: number; quantity: number }[]>([]);
 const { findById } = useProducts();
 
 const handleAdd = (productId: number) => {
     const existingItem = items.value.find(item => item.id === productId);
-    if(existingItem) {
+    if (existingItem) {
         existingItem.quantity++;
         return;
     }
@@ -27,17 +23,23 @@ const billItems = computed(() =>
             id: item.id,
             name: product?.name ?? '',
             unitPrice: product?.price ?? 0,
-            quantity: item.quantity, 
+            quantity: item.quantity,
             price: item.quantity * (product?.price ?? 0)
         }
     })
 )
 
-const totalAmount = computed(() => billItems.value.reduce((previous, current) => previous + current.price , 0))
+const totalAmount = computed(() => billItems.value.reduce((previous, current) => previous + current.price, 0))
 
 </script>
 
 <template>
-    <Products :class="productsClass" @add="handleAdd" />
+    <Products class="products" @add="handleAdd" />
     <Bill :items="billItems" :total-amount="totalAmount" />
 </template>
+
+<style scoped>
+.products {
+    grid-column: 1 / -2;
+}
+</style>
