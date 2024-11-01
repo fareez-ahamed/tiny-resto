@@ -33,9 +33,11 @@ const billItems = computed(() =>
     })
 )
 
+const totalAmount = computed(() => billItems.value.reduce((previous, current) => previous + current.price , 0))
+
 </script>
 
 <template>
     <Products :class="productsClass" @add="handleAdd" />
-    <Bill :items="billItems" />
+    <Bill :items="billItems" :total-amount="totalAmount" />
 </template>

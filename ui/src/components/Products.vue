@@ -24,9 +24,4 @@ const handleClick = (id: number) => {
 </template>
 
 <style scoped>
-#products {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: auto;
-}
 </style>
