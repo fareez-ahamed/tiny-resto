@@ -1,14 +1,18 @@
 import { useQuery } from "@tanstack/vue-query";
-import { fetchProducts } from "../api";
+import { inject } from "vue";
+import { Store } from "../providers";
 
 export function useProducts() {
+
+  const store = inject(Store)!;
+
   const {
     isLoading,
     data: products,
     error,
   } = useQuery({
     queryKey: ["products"],
-    queryFn: fetchProducts,
+    queryFn: store.getProducts,
   });
 
   const findById = (id: number) => {
